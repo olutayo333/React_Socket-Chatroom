@@ -1,24 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState, useRef } from 'react'
+import socketClient from "socket.io-client"
+import { Route, Routes } from 'react-router-dom';
+// import Chat from './components/Chat'
+import Chat from './components/Chat';
 
 function App() {
+  let socket = useRef();
+  console.log(socket);
+  //const[socket, setsocket] = useState("")
+  // let endpoint = "http://localhost:5000"
+  let endpoint = "https://node-socket-xmqt.onrender.com"
+  
+  useEffect(()=>{
+  socket.current = socketClient(endpoint)
+  },[])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Chat socket = {socket}/> } />
+      </Routes>
+    </>
   );
 }
 
