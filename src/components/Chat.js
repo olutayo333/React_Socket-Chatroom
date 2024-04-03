@@ -20,7 +20,7 @@ const Chat = ({socket}) => {
     
   return (
     <center>
-    <div className='container-fluid my-auto'  > <h3>GROUP MESSAGING SYSTEM</h3>
+    <div > <h3>GROUP MESSAGING SYSTEM</h3>
           <div>
               {allMessages.map((msg)=>(<div>{msg}</div>  ))}<hr /> <br />
           </div>
