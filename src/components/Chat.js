@@ -13,9 +13,8 @@ const Chat = ({socket}) => {
   })
 
     const sendMessage = ()=>{
-    //console.log(message);
     socket.current.emit("sendMSG", message)  // sending message to the backend
-    setmessage(" ")
+    setmessage("")
     }
     
   return (
@@ -24,9 +23,11 @@ const Chat = ({socket}) => {
           <div>
               {allMessages.map((msg)=>(<div>{msg}</div>  ))}<hr /> <br />
           </div>
-        <input type="text" onChange={(e)=>setmessage(e.target.value)} style={{width:"80vw", marginBottom:"8%"}} placeholder='type your message here' /> <br /> <hr /> 
-        <button onClick={sendMessage} className='btn btn-lg btn-secondary'>Send Message </button>
-    </div>
+        
+          <input type="text" id='inputID' value={message} onChange={(e)=>setmessage(e.target.value)} style={{width:"80vw", marginBottom:"8%"}} placeholder='type your message here' /> <br /> <hr /> 
+          <button onClick={sendMessage} id='send' className='btn btn-lg btn-secondary'>Send Message </button>
+        
+      </div>
     </center>
   )
 }
